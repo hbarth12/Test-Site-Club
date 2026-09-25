@@ -1,0 +1,373 @@
+<!--
+  Shared NSLS × Syria Direct club page.
+  Use this same block on both sites.
+  Replace every [[PLACEHOLDER]], including image URLs, before publishing.
+-->
+<main class="sdc-club" aria-labelledby="sdc-name">
+  <style>
+    .sdc-club {
+      --teal: #123e3e;
+      --teal-soft: #366d6d;
+      --cream: #f2eadc;
+      --cream-light: #fbf7ef;
+      --tobacco: #9b6944;
+      --burgundy: #702f37;
+      --red: #b94f3c;
+      --mustard: #d4a34a;
+      --ink: #211e1a;
+      --muted: #6f675c;
+      background: var(--cream-light);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0 auto;
+      max-width: 1440px;
+      overflow: hidden;
+    }
+    .sdc-club *, .sdc-club *::before, .sdc-club *::after { box-sizing: border-box; }
+    .sdc-club a { color: inherit; text-underline-offset: .2em; }
+    .sdc-club__serif { font-family: Georgia, "Times New Roman", serif; }
+    .sdc-club__display {
+      font-family: "Arial Narrow", "Aptos Narrow", Impact, sans-serif;
+      font-stretch: condensed;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+    }
+
+    /* HERO — add the house or a Thursday gathering as --hero-image. */
+    .sdc-club__hero {
+      align-items: end;
+      background-color: var(--teal);
+      background-image: linear-gradient(90deg, rgba(18,28,27,.86) 0%, rgba(18,28,27,.56) 56%, rgba(18,28,27,.18) 100%), var(--hero-image, linear-gradient(135deg, #315c55, #9b6944));
+      background-position: center;
+      background-size: cover;
+      color: white;
+      display: grid;
+      min-height: min(62vh, 620px);
+      padding: clamp(1.75rem, 4.5vw, 4rem);
+      position: relative;
+    }
+    .sdc-club__hero::after {
+      background: linear-gradient(0deg, rgba(15,20,18,.48), transparent 45%);
+      content: "";
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+    }
+    .sdc-club__hero-copy { max-width: 920px; position: relative; z-index: 1; }
+    .sdc-club__hero h1 {
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      letter-spacing: -.065em;
+      line-height: .78;
+      margin: 0;
+      text-wrap: balance;
+    }
+    .sdc-club__hero-deck { font-size: clamp(1.35rem, 2.4vw, 2.3rem); line-height: 1.12; margin: 1.2rem 0 .5rem; }
+    .sdc-club__location { font-size: .82rem; font-weight: 800; letter-spacing: .13em; margin: 0; text-transform: uppercase; }
+    .sdc-club__rhythm { border-left: 3px solid var(--mustard); font-size: clamp(.95rem, 1.4vw, 1.15rem); line-height: 1.5; margin: 1.4rem 0 0; max-width: 58ch; padding-left: .85rem; }
+    .sdc-club__hero-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.35rem; }
+    .sdc-club__hero-links a { font-size: .82rem; font-weight: 900; letter-spacing: .09em; text-decoration-thickness: 2px; text-transform: uppercase; }
+
+    /* EVENTS */
+    .sdc-club__events { background: var(--cream); padding: clamp(2rem, 4.5vw, 4rem); }
+    .sdc-club__section-head { align-items: baseline; display: flex; gap: 1rem; justify-content: space-between; margin-bottom: 1.5rem; }
+    .sdc-club__section-head h2 { color: var(--teal); font-size: clamp(2.3rem, 4.5vw, 4rem); letter-spacing: -.05em; line-height: .95; margin: 0; }
+    .sdc-club__all-events { color: var(--burgundy); font-size: .8rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+    .sdc-club__event-grid { display: grid; gap: clamp(1rem, 2.2vw, 2rem); grid-template-columns: minmax(0, 1.55fr) minmax(280px, .75fr); }
+    .sdc-club__poster {
+      color: white;
+      isolation: isolate;
+      min-height: 480px;
+      overflow: hidden;
+      padding: clamp(1.35rem, 3vw, 2.5rem);
+      position: relative;
+    }
+    .sdc-club__poster::before {
+      background: linear-gradient(180deg, rgba(20,15,12,.04), rgba(20,15,12,.78)), var(--event-one-image, linear-gradient(180deg, #d0cabf 0%, #938e86 48%, #302c28 100%));
+      background-position: center;
+      background-size: cover;
+      content: "";
+      inset: 0;
+      position: absolute;
+      z-index: -1;
+    }
+    .sdc-club__poster-inner { display: flex; flex-direction: column; height: 100%; justify-content: space-between; min-height: 420px; }
+    .sdc-club__event-date { font-size: .78rem; font-weight: 900; letter-spacing: .12em; margin: 0; text-transform: uppercase; }
+    .sdc-club__poster h3 { font-size: clamp(2.7rem, 5.2vw, 5.3rem); line-height: .82; margin: 0 0 .9rem; max-width: 11ch; }
+    .sdc-club__guest { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.15rem, 1.8vw, 1.5rem); margin: 0 0 .45rem; }
+    .sdc-club__event-line { font-size: 1rem; line-height: 1.5; margin: .75rem 0 1.2rem; max-width: 52ch; }
+    .sdc-club__rsvp { font-size: .78rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .sdc-club__small-events { display: grid; gap: clamp(1rem, 2.2vw, 2rem); grid-template-rows: 1fr 1fr; }
+    .sdc-club__small-event { display: flex; flex-direction: column; justify-content: space-between; min-height: 225px; padding: clamp(1.2rem, 2.5vw, 1.8rem); }
+    .sdc-club__small-event:nth-child(1) { background: var(--teal); color: #fff8ed; transform: rotate(.35deg); }
+    .sdc-club__small-event:nth-child(2) { background: var(--mustard); color: var(--ink); transform: rotate(-.45deg); }
+    .sdc-club__small-event h3 { font-size: clamp(1.75rem, 3vw, 3.1rem); line-height: .86; margin: .8rem 0; }
+    .sdc-club__small-event .sdc-club__guest { font-size: 1.1rem; }
+    .sdc-club__small-event .sdc-club__event-line { font-size: .95rem; margin-bottom: .7rem; }
+    .sdc-club__flip-card { cursor: pointer; padding: 0; perspective: 1200px; }
+    .sdc-club__flip-inner {
+      height: 100%;
+      min-height: inherit;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform .7s cubic-bezier(.2,.72,.2,1);
+      width: 100%;
+    }
+    .sdc-club__flip-card:hover .sdc-club__flip-inner,
+    .sdc-club__flip-card:focus .sdc-club__flip-inner,
+    .sdc-club__flip-card:focus-within .sdc-club__flip-inner,
+    .sdc-club__flip-card.is-flipped .sdc-club__flip-inner { transform: rotateY(180deg); }
+    .sdc-club__flip-face {
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      inset: 0;
+      justify-content: space-between;
+      padding: clamp(1.35rem, 3vw, 2.5rem);
+      position: absolute;
+      -webkit-backface-visibility: hidden;
+    }
+    .sdc-club__flip-face--back { transform: rotateY(180deg); }
+    .sdc-club__poster.sdc-club__flip-card { min-height: 480px; }
+    .sdc-club__poster .sdc-club__flip-inner { min-height: 480px; }
+    .sdc-club__poster .sdc-club__flip-face {
+      background: linear-gradient(180deg, rgba(20,15,12,.04), rgba(20,15,12,.78)), linear-gradient(180deg, #d0cabf 0%, #938e86 48%, #302c28 100%);
+    }
+    .sdc-club__poster .sdc-club__flip-face--back { background: #302c28; }
+    .sdc-club__poster .sdc-club__flip-front-title { font-size: clamp(3.4rem, 7vw, 7rem); line-height: .8; margin: auto 0 0; max-width: 9ch; }
+    .sdc-club__small-event.sdc-club__flip-card { min-height: 225px; }
+    .sdc-club__small-event .sdc-club__flip-inner { min-height: 225px; }
+    .sdc-club__small-event:nth-child(1) .sdc-club__flip-face { background: var(--teal); color: #fff8ed; }
+    .sdc-club__small-event:nth-child(1) .sdc-club__flip-face--back { background: #0c3636; }
+    .sdc-club__small-event:nth-child(2) .sdc-club__flip-face { background: var(--mustard); color: var(--ink); }
+    .sdc-club__small-event:nth-child(2) .sdc-club__flip-face--back { background: #c49236; }
+    .sdc-club__small-event .sdc-club__flip-front-title { font-size: clamp(1.8rem, 3vw, 3.1rem); line-height: .86; margin: auto 0 0; }
+
+    /* THE HOUSE */
+    .sdc-club__house { background: var(--cream-light); display: grid; gap: clamp(2rem, 4.5vw, 4rem); grid-template-columns: .9fr 1.1fr; padding: clamp(2.5rem, 5vw, 4.5rem); }
+    .sdc-club__house h2, .sdc-club__people h2, .sdc-club__library h2 { color: var(--teal); font-size: clamp(2.6rem, 4.5vw, 4.3rem); letter-spacing: -.055em; line-height: .92; margin: 0; }
+    .sdc-club__house-copy { align-self: center; }
+    .sdc-club__house-copy p { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.1rem, 1.6vw, 1.45rem); line-height: 1.52; margin: 1.15rem 0 0; }
+    .sdc-club__photo-stack { display: grid; gap: .8rem; grid-template-columns: 1.2fr .8fr; grid-template-rows: 1fr .8fr; min-height: 480px; }
+    .sdc-club__photo {
+      background-color: var(--tobacco);
+      background-position: center;
+      background-size: cover;
+      color: #fff8ed;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 180px;
+      overflow: hidden;
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      position: relative;
+    }
+    .sdc-club__photo::after { background: rgba(65,37,25,.13); content: ""; inset: 0; mix-blend-mode: multiply; pointer-events: none; position: absolute; }
+    .sdc-club__photo > * { position: relative; z-index: 1; }
+    .sdc-club__photo--room { background-image: linear-gradient(145deg, #b0835e, #664331); grid-row: 1 / 3; justify-content: center; }
+    .sdc-club__photo--table { background-image: linear-gradient(145deg, #80513b, #aa7250); }
+    .sdc-club__photo--arrival { background-image: linear-gradient(145deg, #6b4433, #986344); }
+    .sdc-club__photo--arrival > * { transform: translate(-.45rem, -.9rem); }
+    .sdc-club__photo-title {
+      font-family: "Arial Narrow", "Aptos Narrow", Impact, sans-serif;
+      font-size: clamp(2.3rem, 5vw, 5rem);
+      font-stretch: condensed;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      line-height: .82;
+      margin: 0 0 1.2rem;
+      text-transform: uppercase;
+    }
+    .sdc-club__photo--table .sdc-club__photo-title,
+    .sdc-club__photo--arrival .sdc-club__photo-title { font-size: clamp(2rem, 3vw, 3.3rem); }
+    .sdc-club__photo-copy { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 2.1vw, 1.8rem); line-height: 1.3; margin: 0; }
+    .sdc-club__photo-note { font-family: Georgia, "Times New Roman", serif; font-size: 1rem; margin: 1.1rem 0 0; }
+    .sdc-club__coordinates { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.35; margin: 0; }
+
+    /* PEOPLE + LIBRARY */
+    .sdc-club__people { background: var(--cream); color: var(--ink); display: grid; gap: 1.5rem clamp(2rem, 6vw, 6rem); grid-template-columns: .85fr 1.15fr; padding: clamp(2.5rem, 5vw, 4.5rem); }
+    .sdc-club__people h2 { color: var(--teal); grid-column: 1 / -1; margin: 0; }
+    .sdc-club__people-copy { grid-column: 2; grid-row: 2; max-width: 650px; }
+    .sdc-club__people p {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+      line-height: 1.5;
+      margin: 0 0 1.15rem;
+      max-width: 650px;
+    }
+    .sdc-club__member-link {
+      color: var(--teal) !important;
+      display: block;
+      font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+      font-weight: 800;
+      margin: 1.5rem 0 0;
+      max-width: 650px;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: .3em;
+    }
+    .sdc-club__member-link:hover, .sdc-club__member-link:focus-visible { color: var(--burgundy) !important; }
+    .sdc-club__library { align-items: center; background: var(--burgundy); color: white; display: grid; gap: clamp(2rem, 4.5vw, 4rem); grid-template-columns: 1.2fr .8fr; padding: clamp(2.5rem, 5vw, 4.5rem); }
+    .sdc-club__library h2 { color: #f3d9c1; }
+    .sdc-club__library-photo { align-items: center; background-color: var(--tobacco); background-image: linear-gradient(135deg, #6e4934, #c39b6b); background-position: center; background-size: cover; color: #fff8ed; display: flex; height: 370px; min-height: 370px; overflow: hidden; padding: clamp(1.5rem, 4vw, 3.5rem); }
+    .sdc-club__library-poster {
+      font-family: "Arial Narrow", "Aptos Narrow", Impact, sans-serif;
+      font-size: clamp(3.4rem, 5.8vw, 6rem);
+      font-stretch: condensed;
+      font-weight: 900;
+      letter-spacing: -.045em;
+      line-height: .74;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .sdc-club__library p { font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.55; margin: 1.15rem 0; }
+    .sdc-club__library .sdc-club__library-poster {
+      font-family: "Arial Narrow", "Aptos Narrow", Impact, sans-serif;
+      font-size: clamp(3.4rem, 5.8vw, 6rem);
+      font-weight: 900;
+      letter-spacing: -.045em;
+      line-height: .74;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .sdc-club__library a { color: var(--mustard); font-size: .8rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+
+    .sdc-club__founders { align-items: end; background: var(--teal); color: white; display: flex; gap: 2rem; justify-content: space-between; padding: 2.4rem clamp(2rem, 7vw, 7rem); }
+    .sdc-club__founders h2 { color: var(--cream); font-size: 2rem; margin: 0 0 .35rem; }
+    .sdc-club__founders p { line-height: 1.5; margin: 0; }
+    .sdc-club__founders strong { color: #b9ddd9; font-weight: 800; }
+    .sdc-club__founder-meta { text-align: right; }
+
+    @media (max-width: 820px) {
+      .sdc-club__hero { min-height: 590px; }
+      .sdc-club__event-grid, .sdc-club__house, .sdc-club__library { grid-template-columns: 1fr; }
+      .sdc-club__poster { min-height: 500px; }
+      .sdc-club__photo-stack { min-height: 440px; }
+      .sdc-club__people { grid-template-columns: 1fr; }
+      .sdc-club__people h2, .sdc-club__people-copy { grid-column: 1; grid-row: auto; }
+      .sdc-club__member-link { margin: 1.5rem 0 0; }
+    }
+    @media (max-width: 520px) {
+      .sdc-club__section-head { align-items: flex-start; flex-direction: column; }
+      .sdc-club__hero-links { gap: 1rem; }
+      .sdc-club__photo-stack { display: block; min-height: 0; }
+      .sdc-club__photo { margin-bottom: 1rem; min-height: 300px; }
+      .sdc-club__founders { align-items: flex-start; flex-direction: column; }
+      .sdc-club__founder-meta { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sdc-club__flip-inner { transition: none; }
+    }
+  </style>
+
+  <section class="sdc-club__hero" style="--hero-image: url('[[HERO IMAGE URL]]')" aria-label="[[DESCRIPTION OF THE HERO PHOTOGRAPH]]">
+    <div class="sdc-club__hero-copy">
+      <h1 id="sdc-name" class="sdc-club__serif">Thursday Club</h1>
+      <p class="sdc-club__hero-deck sdc-club__serif"><strong>An intellectual hub in Damascus.</strong></p>
+      <p class="sdc-club__location">Mazraa, Damascus</p>
+      <p class="sdc-club__rhythm">Every Thursday evening in Mazraa, we gather for food, drinks, and conversation. Throughout the month, we host debates, panels, book talks, screenings, and other events on Syria’s politics, economy, history, and culture.</p>
+      <nav class="sdc-club__hero-links" aria-label="Club introduction">
+        <a href="#coming-up">See what’s coming</a>
+        <a href="membership.html" target="_top">Become a member</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="sdc-club__events" id="coming-up" aria-labelledby="sdc-events-title">
+    <header class="sdc-club__section-head">
+      <h2 id="sdc-events-title" class="sdc-club__serif">Coming up</h2>
+      <a class="sdc-club__all-events" href="events.html" target="_top">All events</a>
+    </header>
+
+    <div class="sdc-club__event-grid" id="home-events">
+      <article class="sdc-club__poster" style="--event-one-image: url('[[FEATURED EVENT IMAGE URL]]')" aria-label="[[DESCRIPTION OF FEATURED EVENT IMAGE]]">
+        <div class="sdc-club__poster-inner">
+          <p class="sdc-club__event-date">[Launch date and time] · Mazraa</p>
+          <div>
+            <h3 class="sdc-club__display">Thursday Club Launch</h3>
+            <p class="sdc-club__guest">An opening night in Mazraa</p>
+            <p class="sdc-club__event-line">Food, drinks, conversation, and the beginning of a new gathering place for Syria’s public life.</p>
+            <a class="sdc-club__rsvp" href="[[LAUNCH RSVP URL]]">RSVP for the launch</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="sdc-club__small-events">
+        <article class="sdc-club__small-event">
+          <p class="sdc-club__event-date">[[BOOK TALK DATE AND TIME]]</p>
+          <div>
+            <h3 class="sdc-club__display">Syrians in the Shadow of War</h3>
+            <p class="sdc-club__guest">Book talk · Edited by Alex Simon</p>
+            <p class="sdc-club__event-line">A conversation about everyday struggles and survival through years of war and social change.</p>
+            <a class="sdc-club__rsvp" href="[[BOOK TALK RSVP URL]]">RSVP</a>
+          </div>
+        </article>
+        <article class="sdc-club__small-event">
+          <p class="sdc-club__event-date">[[THIRD EVENT DATE AND TIME]]</p>
+          <div>
+            <h3 class="sdc-club__display">[[THIRD EVENT TITLE]]</h3>
+            <p class="sdc-club__guest">[[THIRD EVENT GUEST]]</p>
+            <p class="sdc-club__event-line">[[One sharp sentence about the third event.]]</p>
+            <a class="sdc-club__rsvp" href="[[THIRD EVENT RSVP URL]]">RSVP</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sdc-club__house" aria-labelledby="sdc-house-title">
+    <div class="sdc-club__house-copy">
+      <h2 id="sdc-house-title" class="sdc-club__serif">The club</h2>
+      <p>Damascus has no shortage of conferences and workshops. But it lacks places for people across institutions, professions, generations, and communities to routinely encounter one another regularly.</p>
+      <p>Every Thursday, we gather in Mazraa for food, drinks, and conversation. Throughout the month, we host debates, panels, book talks, screenings, and other events on Syria’s politics, economy, history, and culture.</p>
+    </div>
+    <div class="sdc-club__photo-stack" aria-label="Thursday Club details">
+      <article class="sdc-club__photo sdc-club__photo--room">
+        <h3 class="sdc-club__photo-title">Thursdays<br>in Mazraa</h3>
+        <p class="sdc-club__photo-copy">Food, drinks,<br>conversation.</p>
+        <p class="sdc-club__photo-note"><em>From 7 pm</em></p>
+      </article>
+      <article class="sdc-club__photo sdc-club__photo--table">
+        <h3 class="sdc-club__photo-title">Coming<br>soon</h3>
+        <p class="sdc-club__photo-copy">We Launch<br>on October 8th</p>
+      </article>
+      <article class="sdc-club__photo sdc-club__photo--arrival">
+        <h3 class="sdc-club__photo-title">Damascus</h3>
+        <p class="sdc-club__coordinates">33°30′N<br>36°17′E</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sdc-club__library" aria-labelledby="sdc-library-title">
+    <div class="sdc-club__library-photo">
+      <p class="sdc-club__library-poster">Take a<br>book.<br>Leave a<br>book.</p>
+    </div>
+    <div>
+      <h2 id="sdc-library-title" class="sdc-club__serif">The lending library</h2>
+      <p>The club houses a growing collection of Syrian history, politics, law, journalism, and literature. Anyone can borrow from it—or recommend a title, contribute a book, and help curate a shelf.</p>
+      <a href="library.html" target="_top">Browse the shelves</a>
+    </div>
+  </section>
+
+  <section class="sdc-club__people" aria-labelledby="sdc-people-title">
+    <h2 id="sdc-people-title" class="sdc-club__serif">About our community</h2>
+    <div class="sdc-club__people-copy">
+      <p>Our members include journalists, researchers, writers, public officials, diplomats, civil-society leaders, artists, and students.</p>
+      <p>With membership comes a regular place to meet, talk, read, introduce people, propose ideas, and return the following week.</p>
+      <a class="sdc-club__member-link" href="membership.html" target="_top">Become a member →</a>
+    </div>
+  </section>
+
+  <footer class="sdc-club__founders">
+    <div>
+      <h2 class="sdc-club__serif">Thursday Club</h2>
+      <p>A gathering place for Syria’s public life.</p>
+    </div>
+    <div class="sdc-club__founder-meta">
+      <p>Created by <strong>Syria Direct</strong> and the <strong>Network for Syrian Legislative Studies</strong>.</p>
+      <p>Mazraa, Damascus</p>
+    </div>
+  </footer>
+  <script src="events-data.js"></script>
+  <script src="events-home.js"></script>
+</main>

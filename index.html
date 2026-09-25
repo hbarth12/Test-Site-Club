@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thursday Club</title>
+  <style>
+    body { background:#ded8cc; margin:0; }
+    iframe { background:#fff; border:0; display:block; min-height:100vh; width:100%; }
+  </style>
+</head>
+<body>
+  <iframe id="club-preview" src="club-embed.html" title="Club page preview"></iframe>
+  <script>
+    const preview = document.getElementById('club-preview');
+    const fitPreview = () => {
+      const page = preview.contentDocument?.documentElement;
+      if (page) preview.style.height = `${page.scrollHeight}px`;
+    };
+    preview.addEventListener('load', () => {
+      fitPreview();
+      const body = preview.contentDocument?.body;
+      if (body && 'ResizeObserver' in window) new ResizeObserver(fitPreview).observe(body);
+    });
+    window.addEventListener('resize', fitPreview);
+  </script>
+</body>
+</html>
